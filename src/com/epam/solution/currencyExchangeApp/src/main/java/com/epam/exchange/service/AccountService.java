@@ -1,7 +1,6 @@
 package com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.service;
 
 import com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.dao.AccountDAO;
-import com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.exception.AccountNotFoundException;
 import com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.exception.InsufficientFundsException;
 import com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.model.Account;
 import com.epam.solution.currencyExchangeApp.src.main.java.com.epam.exchange.model.Currency;
@@ -19,7 +18,7 @@ public class AccountService {
         this.accountDAO = accountDAO;
     }
 
-    public void exchangeCurrency(Account account, Currency fromCurrency, Currency toCurrency, BigDecimal amount) throws AccountNotFoundException, InsufficientFundsException {
+    public void exchangeCurrency(Account account, Currency fromCurrency, Currency toCurrency, BigDecimal amount) throws InsufficientFundsException {
         lock.lock();
         try {
             BigDecimal balance = account.getCurrencyAmount(fromCurrency);
